@@ -1,2 +1,2 @@
-# unraid-ubuntu
-ubuntu docker with ssh
+# Ubuntu with Ansible
+Lab enviroment with ansible running on ubuntu
