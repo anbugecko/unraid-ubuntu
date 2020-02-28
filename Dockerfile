@@ -2,9 +2,9 @@ FROM ubuntu:18.04
 
 #Install ansible
 RUN apt update
-RUN apt install software-properties-common
+RUN apt install -y software-properties-common
 RUN apt-add-repository --yes --update ppa:ansible/ansible
-RUN apt install ansible
+RUN apt install -y ansible
 
 #Install SSH
 RUN apt install -y openssh-server openssh-client
