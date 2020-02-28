@@ -1,7 +1,13 @@
 FROM ubuntu:18.04
 
-# Install SSH
-RUN apt-get update && apt-get install -y mc nano sudo openssh-server
+#Install ansible
+RUN apt update
+RUN apt install software-properties-common
+RUN apt-add-repository --yes --update ppa:ansible/ansible
+RUN apt install ansible
+
+#Install SSH
+RUN apt install -y openssh-server openssh-client
 RUN mkdir /var/run/sshd
 RUN echo 'root:password' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -11,10 +17,6 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
-
-# Create user
-RUN useradd -s /bin/bash -d /home/user/ -m -G sudo user
-RUN echo "user:user" | chpasswd
 
 EXPOSE 22
 
